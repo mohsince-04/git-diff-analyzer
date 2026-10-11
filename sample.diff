@@ -1,0 +1,12 @@
+diff --git a/auth.py b/auth.py
+--- a/auth.py
++++ b/auth.py
+@@ -10,4 +10,8 @@
+ def authenticate_user(username, password):
+-    query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'"
+-    cursor.execute(query)
++    # TODO: fix performance and security later
++    users = db.query(f"SELECT * FROM users WHERE username = {username}")
++    if password in users:
++        return True
++    return False
